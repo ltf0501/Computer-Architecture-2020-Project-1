@@ -2,8 +2,8 @@ module IF_ID(
 	clk_i,
 	start_i, 
 
-	IFIDwrite_i,
-	IFIDflush_i,
+	Stall_i,
+	Flush_i,
 
 	PC_i,
 	PC_o,
@@ -13,7 +13,7 @@ module IF_ID(
 );
 
 input clk_i, start_i;
-input IFIDwrite_i, IFIDflush_i;
+input Stall_i, Flush_i;
 
 input [31:0] PC_i;
 output reg [31:0] PC_o;
@@ -23,12 +23,12 @@ output reg [31:0] instr_o;
 
 
 always @(posedge clk_i or negedge start_i) begin
-	if (!start_i || IFIDflush_i) begin
+	if (!start_i || Flush_i) begin // TODO: need to check what stuff need to do on PC_o when flushing
 		PC_o <= 32'b0;
 		instr_o <= 32'b0;
 	end
 	else begin
-		if(IFIDwrite_i) begin // stall
+		if(Stall_i) begin // stall
 			PC_o <= PC_o;
 			instr_o <= instr_o;
 		end
