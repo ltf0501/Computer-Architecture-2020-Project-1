@@ -69,7 +69,7 @@ always@(posedge Clk) begin
         $finish;
 
     // put in your own signal to count stall and flush
-    if(CPU.Hazard_Detection.Stall_o == 1 && CPU.Control.Branch_o == 0)stall = stall + 1;
+    if(CPU.Hazard.Stall_o == 1 && CPU.Control.Branch_o == 0)stall = stall + 1;
     if(CPU.Flush == 1)flush = flush + 1;  
 
     // print PC
