@@ -41,6 +41,17 @@ Sign_Extend Sign_Extend(
 	.data_o ()
 );
 
+Control Control(
+	.Op_i (),
+	.NoOp_i (),
+	.ALUOp_o (),
+	.ALUSrc_o (),
+	.Branch_o (),
+	.MemRead_o (),
+	.MemWrite_o (),
+	.RegWrite_o (),
+	.MemtoReg_o ()
+);
 ALU_Control ALU_Control(
 	.funct_i (),
 	.ALUOp_i (),

@@ -1,6 +1,7 @@
 module Control
 (
 	Op_i,
+	NoOp_i,
 	ALUOp_o,
 	ALUSrc_o,
 	Branch_o,
@@ -11,6 +12,7 @@ module Control
 );
 
 input  [6 : 0] Op_i;
+input          NoOp_i;
 output reg [1 : 0] ALUOp_o;
 output reg         ALUSrc_o;
 output reg         Branch_o;
@@ -21,6 +23,16 @@ output reg         MemtoReg_o;
 
 
 always@(*) begin
+	if (!NoOp_i) begin
+		ALUOp_o = 2'b00;
+		ALUSrc_o = 0;
+		Branch_o = 0;
+		MemRead_o = 0;
+		MemWrite_o = 0;
+		RegWrite_o = 0;
+		MemtoReg_o = 0; 
+	end
+	else begin
     case (Op_i)
         7'b0010011: begin // addi srai
 					ALUOp_o = 2'b01;
@@ -82,6 +94,7 @@ always@(*) begin
 					MemtoReg_o = 0; 
         end
     endcase
+	end
 end
 
 endmodule
