@@ -11,35 +11,75 @@ module Control
 );
 
 input  [6 : 0] Op_i;
-output [1 : 0] ALUOp_o;
-output         ALUSrc_o;
-output         Branch_o;
-output         MemRead_o;
-output         MemWrite_o;
-output         RegWrite_o;
-output         MemtoReg_o;
+output reg [1 : 0] ALUOp_o;
+output reg         ALUSrc_o;
+output reg         Branch_o;
+output reg         MemRead_o;
+output reg         MemWrite_o;
+output reg         RegWrite_o;
+output reg         MemtoReg_o;
 
-reg [1:0]      ALUOp_reg;
-reg            MemtoReg_reg;
-
-assign ALUOp_o      = ALUOp_reg;
-assign MemtoReg_o = MemtoReg_reg;
 
 always@(*) begin
     case (Op_i)
         7'b0010011: begin // addi srai
-            ALUOp_reg   = 2'b01;
-            //MemtoReg_reg = 
+					ALUOp_o = 2'b01;
+					ALUSrc_o = 1;
+					Branch_o = 0;
+					MemRead_o = 0;
+					MemWrite_o = 0;
+					RegWrite_o = 1;
+					MemtoReg_o = 0;
         end
+
         7'b0110011: begin // and xor sll add sub mul
-            ALUOp_reg   = 2'b00;
-            //MemtoReg_reg = 
+					ALUOp_o = 2'b00;
+					ALUSrc_o = 0;
+					Branch_o = 0;
+					MemRead_o = 0;
+					MemWrite_o = 0;
+					RegWrite_o = 1;
+					MemtoReg_o = 0;
         end
-        // lw
-        // sw
+
+				7'b0000011: begin // lw
+					ALUOp_o = 2'b00;
+					ALUSrc_o = 1;
+					Branch_o = 0;
+					MemRead_o = 1;
+					MemWrite_o = 0;
+					RegWrite_o = 1;
+					MemtoReg_o = 1; 
+				end
+
+				7'b0100011: begin // sw
+					ALUOp_o = 2'b00;
+					ALUSrc_o = 1;
+					Branch_o = 0;
+					MemRead_o = 0;
+					MemWrite_o = 1;
+					RegWrite_o = 0;
+					MemtoReg_o = 0; 
+				end
+
+				7'b1100011: begin // beq
+					ALUOp_o = 2'b00;
+					ALUSrc_o = 0;
+					Branch_o = 1;
+					MemRead_o = 0;
+					MemWrite_o = 0;
+					RegWrite_o = 0;
+					MemtoReg_o = 0; 
+				end
+
         default: begin
-            ALUOp_reg   = 2'b00;
-            //MemtoReg_reg = 
+					ALUOp_o = 2'b00;
+					ALUSrc_o = 0;
+					Branch_o = 0;
+					MemRead_o = 0;
+					MemWrite_o = 0;
+					RegWrite_o = 0;
+					MemtoReg_o = 0; 
         end
     endcase
 end
