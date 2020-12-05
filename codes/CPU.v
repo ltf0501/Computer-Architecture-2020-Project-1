@@ -36,6 +36,25 @@ And And(
 	.data_o ()
 );
 
+Sign_Extend Sign_Extend(
+	.data_i (),
+	.data_o ()
+);
+
+ALU_Control ALU_Control(
+	.funct_i (),
+	.ALUOp_i (),
+	.ALUCtrl_o ()
+);
+
+ALU ALU(
+	.data1_i (),
+	.data2_i (),
+	.ALUCtrl_i (),
+	.data_o (),
+	.Zero_o ()
+);
+
 Hazard Hazard(
 	.IDEX_MemRead_i (),
 	.IDEX_RDaddr_i (),
