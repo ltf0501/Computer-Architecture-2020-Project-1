@@ -95,7 +95,7 @@ Data_Memory Data_Memory(
 
 And And(
 	.data1_i (ID_branch1),
-	.data2_i (ID_branch2),
+	.data2_i ((ID_read_data1 == ID_read_data2) ? 1'b1 : 1'b0),
 	.data_o (Flush)
 );
 
@@ -149,7 +149,7 @@ Adder Adder_PC(
 );
 
 Adder Adder_Branch(
-	.data1_in (ID_add_in1),
+	.data1_in (ID_imm_gen_out << 1),
 	.data2_in (ID_add_in2),
 	.data_o (ID_add_out)
 );
