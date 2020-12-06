@@ -100,7 +100,7 @@ And And(
 );
 
 Sign_Extend Sign_Extend(
-	.data_i (ID_instruction[31 : 20]),
+	.instr_i (ID_instruction),
 	.data_o (ID_imm_gen_out)
 );
 

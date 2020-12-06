@@ -23,7 +23,7 @@ output reg         MemtoReg_o;
 
 
 always@(*) begin
-	if (!NoOp_i) begin
+	if (NoOp_i) begin
 		ALUOp_o = 2'b00;
 		ALUSrc_o = 0;
 		Branch_o = 0;

@@ -38,6 +38,7 @@ always@(*) begin
                         7'b0000001: ALUCtrl_reg = 3'b101; // mul
                     endcase
                 end
+								3'b010: ALUCtrl_reg = 3'b011; // sw, lw
             endcase
         end
         default: ALUCtrl_reg = 3'b000;
