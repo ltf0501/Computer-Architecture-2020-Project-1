@@ -36,11 +36,13 @@ module ID_EX(
 
 input clk_i, start_i;
 
-input [31:0] instr_i;
-output reg [31:0] instr_o;
+input [9:0] instr_i;
+output reg [9:0] instr_o;
 
-input RegWrite_i, MemtoReg_i, MemRead_i, MemWrite_i, ALUOp_i, ALUSrc_i;
-output reg [31:0] RegWrite_o, MemtoReg_o, MemRead_o, MemWrite_o, ALUOp_o, ALUSrc_o;
+input RegWrite_i, MemtoReg_i, MemRead_i, MemWrite_i, ALUSrc_i;
+input [1:0] ALUOp_i;
+output reg RegWrite_o, MemtoReg_o, MemRead_o, MemWrite_o, ALUSrc_o;
+output reg [1:0] ALUOp_o;
 
 input [31:0] imm_i;
 output reg [31:0] imm_o;

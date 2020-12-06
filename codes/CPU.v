@@ -99,10 +99,10 @@ And And(
 	.data_o (Flush)
 );
 
-// Sign_Extend Sign_Extend(
-// 	.data_i (ID_instruction),
-// 	.data_o (ID_imm_gen_out)
-// );
+Sign_Extend Sign_Extend(
+	.data_i (ID_instruction[31 : 20]),
+	.data_o (ID_imm_gen_out)
+);
 
 Control Control(
 	.Op_i (ID_instruction[6 : 0]),
@@ -203,41 +203,41 @@ IF_ID IF_ID(
 	.instr_o (ID_instruction) 
 );
 
-// ID_EX ID_EX(
-// 	.clk_i (clk_i),
-// 	.start_i (start_i),
+ID_EX ID_EX(
+	.clk_i (clk_i),
+	.start_i (start_i),
 
-// 	.instr_i ({ID_instruction[31 : 25], ID_instruction[14 : 12]}),
-// 	.instr_o (EX_ALU_ctrl_in),
+	.instr_i ({ID_instruction[31 : 25], ID_instruction[14 : 12]}),
+	.instr_o (EX_ALU_ctrl_in),
 
-// 	.RegWrite_i (ID_reg_write),
-// 	.RegWrite_o (EX_reg_write),
-// 	.MemtoReg_i (ID_memto_reg),
-// 	.MemtoReg_o (EX_memto_reg),
-// 	.MemRead_i (ID_mem_read),
-// 	.MemRead_o (EX_mem_read),
-// 	.MemWrite_i (ID_mem_write),
-// 	.MemWrite_o (EX_mem_write),
-// 	.ALUOp_i (ID_ALU_op),
-// 	.ALUOp_o (EX_ALU_op),
-// 	.ALUSrc_i (ID_ALU_src),
-// 	.ALUSrc_o (EX_ALU_src),
+	.RegWrite_i (ID_reg_write),
+	.RegWrite_o (EX_reg_write),
+	.MemtoReg_i (ID_memto_reg),
+	.MemtoReg_o (EX_memto_reg),
+	.MemRead_i (ID_mem_read),
+	.MemRead_o (EX_mem_read),
+	.MemWrite_i (ID_mem_write),
+	.MemWrite_o (EX_mem_write),
+	.ALUOp_i (ID_ALU_op),
+	.ALUOp_o (EX_ALU_op),
+	.ALUSrc_i (ID_ALU_src),
+	.ALUSrc_o (EX_ALU_src),
 
-// 	.imm_i (ID_imm_gen_out),
-// 	.imm_o (EX_instruction),
+	.imm_i (ID_imm_gen_out),
+	.imm_o (EX_instruction),
 
-// 	.RDdata1_i (ID_read_data1),
-// 	.RDdata1_o (EX_read_data1),
-// 	.RDdata2_i (ID_read_data2),
-// 	.RDdata2_o (EX_read_data2),
+	.RDdata1_i (ID_read_data1),
+	.RDdata1_o (EX_read_data1),
+	.RDdata2_i (ID_read_data2),
+	.RDdata2_o (EX_read_data2),
 
-// 	.RSaddr1_i (ID_instruction[19 : 15]),
-// 	.RSaddr1_o (EX_rs1),
-// 	.RSaddr2_i (ID_instruction[24 : 20]),
-// 	.RSaddr2_o (EX_rs2),
-// 	.RDaddr_i (ID_instruction[11 : 7]),
-// 	.RDaddr_o (EX_rd)
-// );
+	.RSaddr1_i (ID_instruction[19 : 15]),
+	.RSaddr1_o (EX_rs1),
+	.RSaddr2_i (ID_instruction[24 : 20]),
+	.RSaddr2_o (EX_rs2),
+	.RDaddr_i (ID_instruction[11 : 7]),
+	.RDaddr_o (EX_rd)
+);
 
 EX_MEM EX_MEM(
 	.clk_i (clk_i),
@@ -262,19 +262,19 @@ EX_MEM EX_MEM(
 	.RDaddr_o (MEM_rd)
 );
 
-// Forward Forward(
-// 	.EX_RSaddr1_i (EX_rs1),
-// 	.EX_RSaddr2_i (EX_rs2),
+Forward Forward(
+	.EX_RSaddr1_i (EX_rs1),
+	.EX_RSaddr2_i (EX_rs2),
 
-// 	.Mem_RegWrite_i (MEM_reg_write),
-// 	.Mem_RDaddr_i (MEM_rd),
+	.Mem_RegWrite_i (MEM_reg_write),
+	.Mem_RDaddr_i (MEM_rd),
 
-// 	.WB_RegWrite_i (WB_reg_write),
-// 	.WB_RDaddr_i (WB_rd),
+	.WB_RegWrite_i (WB_reg_write),
+	.WB_RDaddr_i (WB_rd),
 
-// 	.selectA_o (Forward_A),
-// 	.selectB_o (Forward_B)
-// );
+	.selectA_o (Forward_A),
+	.selectB_o (Forward_B)
+);
 
 Registers Registers(
     .clk_i (clk_i),

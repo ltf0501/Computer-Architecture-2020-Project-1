@@ -12,7 +12,8 @@ module Forward(
 	selectB_o 
 );
 
-input [4:0] EX_RSaddr1_i, EX_RSaddr2_i, Mem_RegWrite_i, Mem_RDaddr_i, WB_RegWrite_i, WB_RDaddr_i;
+input [4:0] EX_RSaddr1_i, EX_RSaddr2_i, Mem_RDaddr_i, WB_RDaddr_i;
+input Mem_RegWrite_i, WB_RegWrite_i;
 
 output [1:0] selectA_o, selectB_o;
 reg [1:0] selectA_o, selectB_o;
