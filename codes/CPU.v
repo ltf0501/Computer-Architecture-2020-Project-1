@@ -168,7 +168,7 @@ MUX32 MUX_ALU(
 	.data_o (EX_ALU_input2)
 );
 
-MUX32 MUX_Mem(
+MUX32 MUX_WB(
 	.data1_i (WB_mux1),
 	.data2_i (WB_mux2),
 	.select_i (WB_memto_reg),
