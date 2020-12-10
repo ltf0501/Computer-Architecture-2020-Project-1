@@ -23,7 +23,7 @@ output reg [31:0] instr_o;
 
 
 always @(posedge clk_i or negedge start_i) begin
-	if (!start_i || Flush_i) begin // TODO: need to check what stuff need to do on PC_o when flushing
+	if (!start_i || Flush_i) begin
 		PC_o <= 32'b0;
 		instr_o <= 32'b0;
 	end
